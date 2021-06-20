@@ -20,7 +20,7 @@ public class Main extends JComponent {
             setTitle("Grafkom");
             setSize(1000, 600);
             panel = new JPanel();
-            Container content = this.getContentPane();
+            Container content = this.getContentPanel();
             content.setLayout(new BorderLayout());
 
 
