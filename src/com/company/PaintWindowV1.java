@@ -26,7 +26,14 @@ class PaintWindowV1 extends JFrame {
         makeColorButton(Color.GREEN);
         makeColorButton(Color.BLACK);
 
-        makeObjectButton();
+        makeObjectButton("Drawline");
+        makeObjectButton("Rectangle");
+        makeObjectButton("Triangle");
+        makeObjectButton("Ketupat");
+        makeObjectButton("Circle");
+        makeObjectButton("Hexagon");
+        makeObjectButton("Line");
+
 
         JButton clearButton = new JButton("Clear");
         clearButton.addActionListener(new ActionListener() {
@@ -45,19 +52,19 @@ class PaintWindowV1 extends JFrame {
         tempButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 drawPad.changeColor(color);
-                drawPad.selected = "drawLine";
             }
         });
     }
 
-    public void makeObjectButton(){
-        JButton objButton = new JButton("Test Button");
+    public void makeObjectButton(String object){
+        JButton objButton = new JButton(object);
         panel.add(objButton);
         objButton.setBounds(2,3,50,90);
         objButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                drawPad.selected = "drawObject";
+                drawPad.selected = 1;
+                drawPad.objectType = object;
             }
         });
 
