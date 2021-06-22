@@ -7,17 +7,20 @@ import java.awt.event.ActionListener;
 
 class PaintWindowV1 extends JFrame {
     private final JPanel panel;
+    private final JPanel panel2;
     private PadDrawV1 drawPad = new PadDrawV1();
 
     public PaintWindowV1() {
         setTitle("Grafkom");
         setSize(1000, 600);
         panel = new JPanel();
+        panel2 = new JPanel();
         Container content = this.getContentPane();
         content.setLayout(new BorderLayout());
 
         content.add(drawPad, BorderLayout.CENTER);
-        content.add(panel, BorderLayout.EAST);
+        content.add(panel, BorderLayout.NORTH);
+        content.add(panel2, BorderLayout.SOUTH);
 
         makeColorButton(Color.BLUE);
         makeColorButton(Color.MAGENTA);
@@ -29,7 +32,7 @@ class PaintWindowV1 extends JFrame {
         makeObjectButton("Drawline");
         makeObjectButton("Rectangle");
         makeObjectButton("Triangle");
-        makeObjectButton("Ketupat");
+        makeObjectButton("Diamond");
         makeObjectButton("Circle");
         makeObjectButton("Hexagon");
         makeObjectButton("Line");
@@ -58,8 +61,8 @@ class PaintWindowV1 extends JFrame {
 
     public void makeObjectButton(String object){
         JButton objButton = new JButton(object);
-        panel.add(objButton);
-        objButton.setBounds(2,3,50,90);
+        panel2.add(objButton);
+        objButton.setBounds(100,390,50,1000);
         objButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

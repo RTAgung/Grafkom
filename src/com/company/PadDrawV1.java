@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 
 class PadDrawV1 extends JComponent {
 
@@ -13,6 +15,7 @@ class PadDrawV1 extends JComponent {
     int currentX, currentY, oldX, oldY;
     int selected = 0;
     String objectType = "";
+    private Diamond diamond;
 
     public PadDrawV1() {
         setDoubleBuffered(false);
@@ -46,18 +49,37 @@ class PadDrawV1 extends JComponent {
 
                     case "Triangle":
                         int midPointX = (oldX+oldY) / 2;
-                        graphics2D.fillPolygon(new int[] {oldX, currentX, midPointX}, new int[] {oldY, currentY, oldY}, 3);
+                        int xPoints[] = new int[] {oldX, currentX, midPointX};
+                        int yPoints[] = new int[] {oldY, currentY, oldY};
+                        graphics2D.fillPolygon(xPoints, yPoints, 3);
                         repaint();
                         break;
 
                     case "Circle":
-                        graphics2D.fillOval(oldX, oldY, width, height);
+                        int xCircle = oldX < currentX ? oldX : currentX;
+                        int yCircle = oldY < currentY ? oldY : currentY;
+
+                        graphics2D.fillOval(xCircle, yCircle, width, height);
                         repaint();
                         break;
 
                     case "Line":
                         graphics2D.drawLine(oldX, oldY, currentX, currentY);
-                        graphics2D.setStroke(dashed);
+                        //graphics2D.setStroke(dashed);
+                        repaint();
+                        break;
+
+                    case "Diamond":
+                        diamond = new Diamond(width, height);
+
+                        int xDiamond = oldX < currentX ? oldX : currentX;
+                        int yDiamond = oldY < currentY ? oldY : currentY;
+
+                        AffineTransform at = AffineTransform.getTranslateInstance(xDiamond, yDiamond);
+                        Shape shape = at.createTransformedShape(diamond);
+
+                        graphics2D.fill(shape);
+                        graphics2D.draw(shape);
                         repaint();
                         break;
                 }
@@ -112,4 +134,16 @@ class PadDrawV1 extends JComponent {
         graphics2D.setPaint(theColor);
         repaint();
     }
+}
+
+class Diamond extends Path2D.Double {
+
+    public Diamond(double width, double height) {
+        moveTo(0, height / 2);
+        lineTo(width / 2, 0);
+        lineTo(width, height / 2);
+        lineTo(width / 2, height);
+        closePath();
+    }
+
 }
