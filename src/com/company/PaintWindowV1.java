@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 class PaintWindowV1 extends JFrame {
     private final JPanel panel;
     private final JPanel panel2;
+    private final JPanel panelEast;
     private PadDrawV1 drawPad = new PadDrawV1();
 
     public PaintWindowV1() {
@@ -15,9 +17,16 @@ class PaintWindowV1 extends JFrame {
         setSize(1000, 600);
         panel = new JPanel();
         panel2 = new JPanel();
+        panelEast = new JPanel();
+
         Container content = this.getContentPane();
         content.setLayout(new BorderLayout());
 
+        panelEast.setBackground(Color.BLUE);
+        panelEast.setLayout(new GridLayout(5, 1, 5, 5));
+        panelEast.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        content.add(panelEast, BorderLayout.EAST);
         content.add(drawPad, BorderLayout.CENTER);
         content.add(panel, BorderLayout.NORTH);
         content.add(panel2, BorderLayout.SOUTH);
@@ -37,6 +46,8 @@ class PaintWindowV1 extends JFrame {
         makeObjectButton("Hexagon");
         makeObjectButton("Line");
 
+        TugasRta tugasRta = new TugasRta(content, panelEast);
+        tugasRta.makeLayoutRta();
 
         JButton clearButton = new JButton("Clear");
         clearButton.addActionListener(new ActionListener() {
@@ -59,10 +70,10 @@ class PaintWindowV1 extends JFrame {
         });
     }
 
-    public void makeObjectButton(String object){
+    public void makeObjectButton(String object) {
         JButton objButton = new JButton(object);
         panel2.add(objButton);
-        objButton.setBounds(100,390,50,1000);
+        objButton.setBounds(100, 390, 50, 1000);
         objButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +81,5 @@ class PaintWindowV1 extends JFrame {
                 drawPad.objectType = object;
             }
         });
-
     }
 }
