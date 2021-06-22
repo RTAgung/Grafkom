@@ -22,7 +22,6 @@ class PaintWindowV1 extends JFrame {
         Container content = this.getContentPane();
         content.setLayout(new BorderLayout());
 
-        panelEast.setBackground(Color.BLUE);
         panelEast.setLayout(new GridLayout(5, 1, 5, 5));
         panelEast.setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -46,7 +45,7 @@ class PaintWindowV1 extends JFrame {
         makeObjectButton("Hexagon");
         makeObjectButton("Line");
 
-        TugasRta tugasRta = new TugasRta(content, panelEast);
+        TugasRta tugasRta = new TugasRta(content, panelEast, drawPad);
         drawPad.tugasRta = tugasRta;
         tugasRta.makeLayoutRta();
 
