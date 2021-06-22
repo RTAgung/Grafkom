@@ -50,9 +50,9 @@ class PadDrawV1 extends JComponent {
                         break;
 
                     case "Triangle":
-                        int midPointX = (oldX+oldY) / 2;
-                        int xPoints[] = new int[] {oldX, currentX, midPointX};
-                        int yPoints[] = new int[] {oldY, currentY, oldY};
+                        int midPointX = (oldX + oldY) / 2;
+                        int xPoints[] = new int[]{oldX, currentX, midPointX};
+                        int yPoints[] = new int[]{oldY, currentY, oldY};
                         graphics2D.fillPolygon(xPoints, yPoints, 3);
                         repaint();
                         break;

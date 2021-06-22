@@ -12,12 +12,6 @@ public class TugasRta {
 
     private JPanel panelButton;
 
-//    private int startX = 0;
-//    private int startY = 0;
-//    private int endX = 0;
-//    private int endY = 0;
-//    boolean haveSelect = false;
-
     public TugasRta(Container content, JPanel panelRoot, PadDrawV1 drawPad) {
         this.panelRoot = panelRoot;
         this.content = content;
@@ -265,11 +259,4 @@ public class TugasRta {
             //asd
         });
     }
-
-//    public void setCoordinate(int startX, int startY, int endX, int endY) {
-//        this.startX = startX;
-//        this.startY = startY;
-//        this.endX = endX;
-//        this.endY = endY;
-//    }
 }
