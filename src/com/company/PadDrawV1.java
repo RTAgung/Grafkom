@@ -17,6 +17,8 @@ class PadDrawV1 extends JComponent {
     String objectType = "";
     private Diamond diamond;
 
+    TugasRta tugasRta;
+
     public PadDrawV1() {
         setDoubleBuffered(false);
 

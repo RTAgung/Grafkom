@@ -2,12 +2,21 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TugasRta {
     private Container content;
     private JPanel panelRoot;
+
     private JPanel panelButton;
 
+    private int startX = 0;
+    private int startY = 0;
+    private int endX = 0;
+    private int endY = 0;
+
+    boolean haveSelect = false;
 
     public TugasRta(Container content, JPanel panelRoot) {
         this.panelRoot = panelRoot;
@@ -30,9 +39,29 @@ public class TugasRta {
         makeRtaButton("Refleksi");
     }
 
-    private void makeRtaButton(String text) {
-        JButton rtaButton = new JButton(text);
+    private void makeRtaButton(String type) {
+        JButton rtaButton = new JButton(type);
         panelButton.add(rtaButton);
         rtaButton.setSize(20, 20);
+        rtaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actionButton(type);
+            }
+        });
+    }
+
+    private void actionButton(String type) {
+        switch (type) {
+            case "Select":
+                break;
+        }
+    }
+
+    public void setCoordinate(int startX, int startY, int endX, int endY) {
+        this.startX = startX;
+        this.startY = startY;
+        this.endX = endX;
+        this.endY = endY;
     }
 }

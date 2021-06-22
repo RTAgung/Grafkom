@@ -47,6 +47,7 @@ class PaintWindowV1 extends JFrame {
         makeObjectButton("Line");
 
         TugasRta tugasRta = new TugasRta(content, panelEast);
+        drawPad.tugasRta = tugasRta;
         tugasRta.makeLayoutRta();
 
         JButton clearButton = new JButton("Clear");
