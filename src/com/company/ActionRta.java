@@ -56,26 +56,20 @@ public class ActionRta {
         frame.setVisible(true);
 
         JLabel title = new JLabel("Rotate");
-        JLabel lX = new JLabel("X (degree) = ");
-        JLabel lY = new JLabel("Y (degree) = ");
-        JTextField tfX = new JTextField();
-        JTextField tfY = new JTextField();
+        JLabel lDegree = new JLabel("Degree = ");
+        JTextField tfDegree = new JTextField();
         JButton bCancel = new JButton("cancel");
         JButton bSet = new JButton("set");
 
         title.setBounds(100, 20, 100, 20);
-        lX.setBounds(20, 80, 90, 20);
-        lY.setBounds(20, 120, 90, 20);
-        tfX.setBounds(120, 80, 80, 20);
-        tfY.setBounds(120, 120, 80, 20);
+        lDegree.setBounds(20, 80, 90, 20);
+        tfDegree.setBounds(120, 80, 80, 20);
         bCancel.setBounds(80, 180, 80, 20);
         bSet.setBounds(180, 180, 80, 20);
 
         frame.add(title);
-        frame.add(lX);
-        frame.add(lY);
-        frame.add(tfX);
-        frame.add(tfY);
+        frame.add(lDegree);
+        frame.add(tfDegree);
         frame.add(bCancel);
         frame.add(bSet);
 
@@ -84,7 +78,18 @@ public class ActionRta {
         });
 
         bSet.addActionListener(v -> {
-            //asd
+            try {
+                double degree = Double.parseDouble(tfDegree.getText());
+
+                drawPad.clear();
+                AffineTransform af = new AffineTransform();
+                af.rotate(Math.toRadians(degree));
+                drawPad.graphics2D.transform(af);
+                drawPad.switchCreateShape();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            frame.dispose();
         });
     }
 
@@ -148,8 +153,8 @@ public class ActionRta {
         JLabel title = new JLabel("Scaling");
         JLabel lX = new JLabel("X (%) = ");
         JLabel lY = new JLabel("Y (%) = ");
-        JTextField tfX = new JTextField("0");
-        JTextField tfY = new JTextField("0");
+        JTextField tfX = new JTextField("100");
+        JTextField tfY = new JTextField("100");
         JButton bCancel = new JButton("cancel");
         JButton bSet = new JButton("set");
 
@@ -174,7 +179,19 @@ public class ActionRta {
         });
 
         bSet.addActionListener(v -> {
-            //asd
+            try {
+                double x = Double.parseDouble(tfX.getText()) / 100;
+                double y = Double.parseDouble(tfY.getText()) / 100;
+
+                drawPad.clear();
+                AffineTransform af = new AffineTransform();
+                af.scale(x, y);
+                drawPad.graphics2D.transform(af);
+                drawPad.switchCreateShape();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            frame.dispose();
         });
     }
 
@@ -213,7 +230,19 @@ public class ActionRta {
         });
 
         bSet.addActionListener(v -> {
-            //asd
+            try {
+                double x = Double.parseDouble(tfX.getText());
+                double y = Double.parseDouble(tfY.getText());
+
+                drawPad.clear();
+                AffineTransform af = new AffineTransform();
+                af.shear(x, y);
+                drawPad.graphics2D.transform(af);
+                drawPad.switchCreateShape();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            frame.dispose();
         });
     }
 }

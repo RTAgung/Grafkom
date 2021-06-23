@@ -28,6 +28,8 @@ class PadDrawV1 extends JComponent {
             public void mousePressed(MouseEvent e) {
                 oldX = e.getX();
                 oldY = e.getY();
+
+                graphics2D.setTransform(new AffineTransform());
             }
 
             @Override
@@ -36,8 +38,6 @@ class PadDrawV1 extends JComponent {
 
                 currentX = e.getX();
                 currentY = e.getY();
-
-                graphics2D.setTransform(new AffineTransform());
 
                 switchCreateShape();
             }

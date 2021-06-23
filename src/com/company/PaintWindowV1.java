@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 
 class PaintWindowV1 extends JFrame {
     private final JPanel panel;
@@ -52,6 +53,7 @@ class PaintWindowV1 extends JFrame {
         JButton clearButton = new JButton("Clear");
         clearButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                drawPad.graphics2D.setTransform(new AffineTransform());
                 drawPad.clear();
             }
         });
