@@ -6,17 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TugasRta {
-    private Container content;
-    private JPanel panelRoot;
-    private PadDrawV1 drawPad;
-    private ActionRta actionRta;
+    private final JPanel panelRoot;
+    private final ActionRta actionRta;
 
     private JPanel panelButton;
 
-    public TugasRta(Container content, JPanel panelRoot, PadDrawV1 drawPad) {
+    public TugasRta(JPanel panelRoot, PadDrawV1 drawPad) {
         this.panelRoot = panelRoot;
-        this.content = content;
-        this.drawPad = drawPad;
         actionRta = new ActionRta(drawPad);
     }
 

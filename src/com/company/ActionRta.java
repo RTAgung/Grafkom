@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.geom.AffineTransform;
 
 public class ActionRta {
-    private PadDrawV1 drawPad;
+    private final PadDrawV1 drawPad;
 
     public ActionRta(PadDrawV1 drawPad) {
         this.drawPad = drawPad;

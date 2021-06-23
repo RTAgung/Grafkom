@@ -45,7 +45,7 @@ class PaintWindowV1 extends JFrame {
         makeObjectButton("Hexagon");
         makeObjectButton("Line");
 
-        TugasRta tugasRta = new TugasRta(content, panelEast, drawPad);
+        TugasRta tugasRta = new TugasRta(panelEast, drawPad);
         drawPad.tugasRta = tugasRta;
         tugasRta.makeLayoutRta();
 
