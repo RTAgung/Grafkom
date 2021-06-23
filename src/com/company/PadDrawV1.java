@@ -12,6 +12,7 @@ class PadDrawV1 extends JComponent {
 
     Image image;
     Graphics2D graphics2D;
+    AffineTransform old;
     int currentX, currentY, oldX, oldY, width, height, startX, startY;
     int selected = 0;
     String objectType = "";
@@ -36,31 +37,9 @@ class PadDrawV1 extends JComponent {
                 currentX = e.getX();
                 currentY = e.getY();
 
-                switch (objectType) {
-                    case "Rectangle":
-                        drawRectangle();
-                        break;
+                graphics2D.setTransform(new AffineTransform());
 
-                    case "Triangle":
-                        drawTriangle();
-                        break;
-
-                    case "Circle":
-                        drawCircle();
-                        break;
-
-                    case "Line":
-                        drawLine();
-                        break;
-
-                    case "Diamond":
-                        drawDiamond();
-                        break;
-
-                    case "Hexagon":
-                        drawHexagon();
-                        break;
-                }
+                switchCreateShape();
             }
         });
 
@@ -83,6 +62,34 @@ class PadDrawV1 extends JComponent {
             }
         });
 
+    }
+
+    public void switchCreateShape() {
+        switch (objectType) {
+            case "Rectangle":
+                drawRectangle();
+                break;
+
+            case "Triangle":
+                drawTriangle();
+                break;
+
+            case "Circle":
+                drawCircle();
+                break;
+
+            case "Line":
+                drawLine();
+                break;
+
+            case "Diamond":
+                drawDiamond();
+                break;
+
+            case "Hexagon":
+                drawHexagon();
+                break;
+        }
     }
 
     public void paintComponent(Graphics g) {
