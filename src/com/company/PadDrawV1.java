@@ -14,6 +14,7 @@ class PadDrawV1 extends JComponent {
     Graphics2D graphics2D;
     AffineTransform old;
     int currentX, currentY, oldX, oldY, width, height, startX, startY;
+    int midpointX, midpointY;
     int selected = 0;
     String objectType = "";
     private Diamond diamond;
@@ -38,6 +39,9 @@ class PadDrawV1 extends JComponent {
 
                 currentX = e.getX();
                 currentY = e.getY();
+
+                startX = currentX - oldX < 0 ? currentX : oldX;
+                startY = currentY - oldY < 0 ? currentY : oldY;
 
                 switchCreateShape();
             }
@@ -119,8 +123,9 @@ class PadDrawV1 extends JComponent {
     private void drawRectangle() {
         width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
         height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
-        startX = currentX - oldX < 0 ? currentX : oldX;
-        startY = currentY - oldY < 0 ? currentY : oldY;
+
+        midpointX = startX + width / 2;
+        midpointY = startY + height / 2;
 
         graphics2D.fillRect(startX, startY, width, height);
         repaint();
@@ -138,6 +143,10 @@ class PadDrawV1 extends JComponent {
     private void drawDiamond() {
         width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
         height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
+
+        midpointX = startX + width / 2;
+        midpointY = startY + height / 2;
+
         diamond = new Diamond(width, height);
 
         int xDiamond = oldX < currentX ? oldX : currentX;
@@ -158,6 +167,9 @@ class PadDrawV1 extends JComponent {
         width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
         height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
 
+        midpointX = startX + width / 2;
+        midpointY = startY + height / 2;
+
         graphics2D.fillOval(xCircle, yCircle, width, height);
         repaint();
     }
@@ -167,6 +179,9 @@ class PadDrawV1 extends JComponent {
     }
 
     private void drawLine() {
+        midpointX = (currentX + oldX) / 2;
+        midpointY = (currentY + oldY) / 2;
+
         graphics2D.drawLine(oldX, oldY, currentX, currentY);
         //graphics2D.setStroke(dashed);
         repaint();

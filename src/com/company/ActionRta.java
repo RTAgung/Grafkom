@@ -57,7 +57,7 @@ public class ActionRta {
 
         JLabel title = new JLabel("Rotate");
         JLabel lDegree = new JLabel("Degree = ");
-        JTextField tfDegree = new JTextField();
+        JTextField tfDegree = new JTextField("0");
         JButton bCancel = new JButton("cancel");
         JButton bSet = new JButton("set");
 
@@ -83,7 +83,7 @@ public class ActionRta {
 
                 drawPad.clear();
                 AffineTransform af = new AffineTransform();
-                af.rotate(Math.toRadians(degree));
+                af.rotate(Math.toRadians(degree), drawPad.midpointX, drawPad.midpointY);
                 drawPad.graphics2D.transform(af);
                 drawPad.switchCreateShape();
             } catch (Exception e) {
@@ -185,6 +185,7 @@ public class ActionRta {
 
                 drawPad.clear();
                 AffineTransform af = new AffineTransform();
+                af.translate(-(drawPad.midpointX * (x - 1)), -(drawPad.midpointY * (y - 1)));
                 af.scale(x, y);
                 drawPad.graphics2D.transform(af);
                 drawPad.switchCreateShape();
@@ -204,8 +205,8 @@ public class ActionRta {
         JLabel title = new JLabel("Skew");
         JLabel lX = new JLabel("X (*axis) = ");
         JLabel lY = new JLabel("Y (*axis) = ");
-        JTextField tfX = new JTextField();
-        JTextField tfY = new JTextField();
+        JTextField tfX = new JTextField("0");
+        JTextField tfY = new JTextField("0");
         JButton bCancel = new JButton("cancel");
         JButton bSet = new JButton("set");
 
