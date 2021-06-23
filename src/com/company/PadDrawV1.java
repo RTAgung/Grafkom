@@ -12,7 +12,7 @@ class PadDrawV1 extends JComponent {
 
     Image image;
     Graphics2D graphics2D;
-    int currentX, currentY, oldX, oldY;
+    int currentX, currentY, oldX, oldY, width, height, startX, startY;
     int selected = 0;
     String objectType = "";
     private Diamond diamond;
@@ -36,53 +36,29 @@ class PadDrawV1 extends JComponent {
                 currentX = e.getX();
                 currentY = e.getY();
 
-                int width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
-                int height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
-                int startX = currentX - oldX < 0 ? currentX : oldX;
-                int startY = currentY - oldY < 0 ? currentY : oldY;
-                Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
-                        0, new float[]{9}, 0);
-
                 switch (objectType) {
                     case "Rectangle":
-                        graphics2D.fillRect(startX, startY, width, height);
-                        repaint();
+                        drawRectangle();
                         break;
 
                     case "Triangle":
-                        int midPointX = (oldX + oldY) / 2;
-                        int xPoints[] = new int[]{oldX, currentX, midPointX};
-                        int yPoints[] = new int[]{oldY, currentY, oldY};
-                        graphics2D.fillPolygon(xPoints, yPoints, 3);
-                        repaint();
+                        drawTriangle();
                         break;
 
                     case "Circle":
-                        int xCircle = oldX < currentX ? oldX : currentX;
-                        int yCircle = oldY < currentY ? oldY : currentY;
-
-                        graphics2D.fillOval(xCircle, yCircle, width, height);
-                        repaint();
+                        drawCircle();
                         break;
 
                     case "Line":
-                        graphics2D.drawLine(oldX, oldY, currentX, currentY);
-                        //graphics2D.setStroke(dashed);
-                        repaint();
+                        drawLine();
                         break;
 
                     case "Diamond":
-                        diamond = new Diamond(width, height);
+                        drawDiamond();
+                        break;
 
-                        int xDiamond = oldX < currentX ? oldX : currentX;
-                        int yDiamond = oldY < currentY ? oldY : currentY;
-
-                        AffineTransform at = AffineTransform.getTranslateInstance(xDiamond, yDiamond);
-                        Shape shape = at.createTransformedShape(diamond);
-
-                        graphics2D.fill(shape);
-                        graphics2D.draw(shape);
-                        repaint();
+                    case "Hexagon":
+                        drawHexagon();
                         break;
                 }
             }
@@ -101,11 +77,7 @@ class PadDrawV1 extends JComponent {
 
                 switch (objectType) {
                     case "Drawline":
-                        graphics2D.drawLine(oldX, oldY, currentX, currentY);
-                        repaint();
-
-                        oldX = currentX;
-                        oldY = currentY;
+                        drawFreeLine();
                         break;
                 }
             }
@@ -135,6 +107,70 @@ class PadDrawV1 extends JComponent {
     public void changeColor(Color theColor) {
         graphics2D.setPaint(theColor);
         repaint();
+    }
+
+    private void drawRectangle() {
+        width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
+        height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
+        startX = currentX - oldX < 0 ? currentX : oldX;
+        startY = currentY - oldY < 0 ? currentY : oldY;
+
+        graphics2D.fillRect(startX, startY, width, height);
+        repaint();
+    }
+
+    private void drawTriangle() {
+        int midPointX = (oldX + oldY) / 2;
+        int xPoints[] = new int[]{oldX, currentX, midPointX};
+        int yPoints[] = new int[]{oldY, currentY, oldY};
+
+        graphics2D.fillPolygon(xPoints, yPoints, 3);
+        repaint();
+    }
+
+    private void drawDiamond() {
+        width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
+        height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
+        diamond = new Diamond(width, height);
+
+        int xDiamond = oldX < currentX ? oldX : currentX;
+        int yDiamond = oldY < currentY ? oldY : currentY;
+
+        AffineTransform at = AffineTransform.getTranslateInstance(xDiamond, yDiamond);
+        Shape shape = at.createTransformedShape(diamond);
+
+        graphics2D.fill(shape);
+        graphics2D.draw(shape);
+        repaint();
+    }
+
+    private void drawCircle() {
+        int xCircle = oldX < currentX ? oldX : currentX;
+        int yCircle = oldY < currentY ? oldY : currentY;
+
+        width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
+        height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
+
+        graphics2D.fillOval(xCircle, yCircle, width, height);
+        repaint();
+    }
+
+    private void drawHexagon() {
+
+    }
+
+    private void drawLine() {
+        graphics2D.drawLine(oldX, oldY, currentX, currentY);
+        //graphics2D.setStroke(dashed);
+        repaint();
+    }
+
+    private void drawFreeLine() {
+        graphics2D.drawLine(oldX, oldY, currentX, currentY);
+        repaint();
+
+        oldX = currentX;
+        oldY = currentY;
     }
 }
 
