@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class Line {
     private final JPanel panelRoot;
     private final PadDrawV1 padDrawV1;
-    private JPanel panelButton;
+//    private JPanel panelButton;
+    private Box boxButton;
 
     public Line(JPanel panelRoot, PadDrawV1 padDrawV1) {
         this.panelRoot = panelRoot;
@@ -16,11 +17,14 @@ public class Line {
     }
 
     public void makeLayout() {
-        panelButton = new JPanel();
-        panelButton.setSize(150, 150);
-        panelButton.setLayout(new GridLayout(5, 1, 5, 5));
+//        panelButton = new JPanel();
+//        panelButton.setSize(150, 150);
+//        panelButton.setLayout(new GridLayout(5, 1, 5, 5));
+//
+//        panelRoot.add(panelButton);
 
-        panelRoot.add(panelButton);
+        boxButton = Box.createVerticalBox();
+        panelRoot.add(boxButton);
 
         makeButton("dashed");
         makeButton("normal");
@@ -31,7 +35,8 @@ public class Line {
 
     public void makeButton(String type) {
         JButton btn = new JButton(type);
-        panelButton.add(btn);
+//        panelButton.add(btn);
+        boxButton.add(btn);
         btn.setSize(20, 20);
         btn.addActionListener(new ActionListener() {
             @Override
@@ -45,10 +50,12 @@ public class Line {
         JTextField tfStrokewidth = new JTextField();
         JButton btnSet = new JButton("Set");
 
-        panelButton.add(tfStrokewidth);
+//        panelButton.add(tfStrokewidth);
+        boxButton.add(tfStrokewidth);
         tfStrokewidth.setSize(20, 20);
 
-        panelButton.add(btnSet);
+//        panelButton.add(btnSet);
+        boxButton.add(btnSet);
         btnSet.setSize(20, 10);
         btnSet.addActionListener(new ActionListener() {
             @Override
