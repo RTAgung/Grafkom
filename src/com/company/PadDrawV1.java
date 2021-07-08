@@ -16,6 +16,7 @@ class PadDrawV1 extends JComponent {
     int currentX, currentY, oldX, oldY, width, height, startX, startY;
     int midpointX, midpointY;
     int selected = 0;
+    int strokeWidth = 1;
     String objectType = "";
     private Diamond diamond;
 
@@ -183,7 +184,6 @@ class PadDrawV1 extends JComponent {
         midpointY = (currentY + oldY) / 2;
 
         graphics2D.drawLine(oldX, oldY, currentX, currentY);
-        //graphics2D.setStroke(dashed);
         repaint();
     }
 
@@ -193,6 +193,27 @@ class PadDrawV1 extends JComponent {
 
         oldX = currentX;
         oldY = currentY;
+    }
+
+    public void setStroke(String strokeType){
+        switch (strokeType){
+            case "dashed":
+                Stroke dashed = new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
+                        0, new float[]{9}, 0);
+                graphics2D.setStroke(dashed);
+                break;
+
+            case "normal":
+                Stroke normal = new BasicStroke(strokeWidth);
+                graphics2D.setStroke(normal);
+                break;
+
+            case "dotted":
+                Stroke dotted = new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
+                        0, new float[]{2}, 0);
+                graphics2D.setStroke(dotted);
+                break;
+        }
     }
 
     static class Diamond extends Path2D.Double {

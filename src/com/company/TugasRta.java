@@ -19,7 +19,7 @@ public class TugasRta {
     public void makeLayoutRta() {
         panelButton = new JPanel();
         panelButton.setSize(150, 150);
-        panelButton.setLayout(new GridLayout(2, 3, 5, 5));
+        panelButton.setLayout(new GridLayout(3, 2, 5, 5));
 
         panelRoot.add(panelButton);
 
