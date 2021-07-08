@@ -19,6 +19,8 @@ class PadDrawV1 extends JComponent {
     int strokeWidth = 1;
     String objectType = "";
     private Diamond diamond;
+    private Triangle triangle;
+    private Hexagonal hexagonal;
 
     TugasRta tugasRta;
 
@@ -133,11 +135,22 @@ class PadDrawV1 extends JComponent {
     }
 
     private void drawTriangle() {
-        int midPointX = (oldX + oldY) / 2;
-        int xPoints[] = new int[]{oldX, currentX, midPointX};
-        int yPoints[] = new int[]{oldY, currentY, oldY};
+        width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
+        height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
 
-        graphics2D.fillPolygon(xPoints, yPoints, 3);
+        triangle = new Triangle(width, height);
+
+        int xTriangle = oldX < currentX ? oldX : currentX;
+        int yTriangle = oldY < currentY ? oldY : currentY;
+
+        midpointX = (oldX + currentX + ((oldX + currentX) / 2)) / 3;
+        midpointY = (yTriangle + (yTriangle + height) + (yTriangle + height)) / 3;
+
+        AffineTransform at = AffineTransform.getTranslateInstance(xTriangle, yTriangle);
+        Shape shape = at.createTransformedShape(triangle);
+
+        graphics2D.fill(shape);
+        graphics2D.draw(shape);
         repaint();
     }
 
@@ -176,7 +189,23 @@ class PadDrawV1 extends JComponent {
     }
 
     private void drawHexagon() {
+        width = currentX - oldX < 0 ? oldX - currentX : currentX - oldX;
+        height = currentY - oldY < 0 ? oldY - currentY : currentY - oldY;
 
+        midpointX = startX + width / 2;
+        midpointY = startY + height / 2;
+
+        hexagonal = new Hexagonal(width, height);
+
+        int xHexagonal = oldX < currentX ? oldX : currentX;
+        int yHexagonal = oldY < currentY ? oldY : currentY;
+
+        AffineTransform at = AffineTransform.getTranslateInstance(xHexagonal, yHexagonal);
+        Shape shape = at.createTransformedShape(hexagonal);
+
+        graphics2D.fill(shape);
+        graphics2D.draw(shape);
+        repaint();
     }
 
     private void drawLine() {
@@ -195,8 +224,8 @@ class PadDrawV1 extends JComponent {
         oldY = currentY;
     }
 
-    public void setStroke(String strokeType){
-        switch (strokeType){
+    public void setStroke(String strokeType) {
+        switch (strokeType) {
             case "dashed":
                 Stroke dashed = new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
                         0, new float[]{9}, 0);
@@ -209,8 +238,9 @@ class PadDrawV1 extends JComponent {
                 break;
 
             case "dotted":
+                float jarak = (strokeWidth < 10) ? 2 : (strokeWidth < 50) ? strokeWidth / 2 : strokeWidth / 4;
                 Stroke dotted = new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
-                        0, new float[]{2}, 0);
+                        0, new float[]{strokeWidth, jarak}, 0);
                 graphics2D.setStroke(dotted);
                 break;
         }
@@ -223,6 +253,32 @@ class PadDrawV1 extends JComponent {
             lineTo(width / 2, 0);
             lineTo(width, height / 2);
             lineTo(width / 2, height);
+            closePath();
+        }
+    }
+
+    static class Triangle extends Path2D.Double {
+
+        public Triangle(double width, double height) {
+            moveTo(0, height);
+            lineTo(width / 2, 0);
+            lineTo(width, height);
+            closePath();
+        }
+    }
+
+    static class Hexagonal extends Path2D.Double {
+
+        public Hexagonal(double width, double height) {
+            double x_div = width / 4;
+            double y_div = height / 4;
+
+            moveTo(width / 2, 0);
+            lineTo(width, y_div);
+            lineTo(width, y_div + y_div + y_div);
+            lineTo(width / 2, height);
+            lineTo(0, y_div + y_div + y_div);
+            lineTo(0, y_div);
             closePath();
         }
     }

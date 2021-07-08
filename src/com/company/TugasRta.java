@@ -23,12 +23,10 @@ public class TugasRta {
 
         panelRoot.add(panelButton);
 
-//        makeRtaButton("Select");
         makeRtaButton("Translasi");
         makeRtaButton("Scaling");
         makeRtaButton("Skew");
         makeRtaButton("Rotate");
-        makeRtaButton("Refleksi");
     }
 
     private void makeRtaButton(String type) {
@@ -56,9 +54,6 @@ public class TugasRta {
                 break;
             case "Rotate":
                 actionRta.showActionRotate();
-                break;
-            case "Refleksi":
-                actionRta.showActionRefleksi();
                 break;
         }
     }

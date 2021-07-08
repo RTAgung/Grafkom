@@ -10,45 +10,6 @@ public class ActionRta {
         this.drawPad = drawPad;
     }
 
-    public void showActionRefleksi() {
-        JFrame frame = new JFrame();
-        frame.setSize(300, 300);
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-        JLabel title = new JLabel("Refleksi");
-        JLabel lX = new JLabel("Horizontal");
-        JLabel lY = new JLabel("Vertical");
-        JCheckBox cX = new JCheckBox();
-        JCheckBox cY = new JCheckBox();
-        JButton bCancel = new JButton("cancel");
-        JButton bSet = new JButton("set");
-
-        title.setBounds(100, 20, 100, 20);
-        lX.setBounds(20, 80, 70, 20);
-        lY.setBounds(20, 120, 70, 20);
-        cX.setBounds(90, 80, 80, 20);
-        cY.setBounds(90, 120, 80, 20);
-        bCancel.setBounds(80, 180, 80, 20);
-        bSet.setBounds(180, 180, 80, 20);
-
-        frame.add(title);
-        frame.add(lX);
-        frame.add(lY);
-        frame.add(cX);
-        frame.add(cY);
-        frame.add(bCancel);
-        frame.add(bSet);
-
-        bCancel.addActionListener(e -> {
-            frame.dispose();
-        });
-
-        bSet.addActionListener(v -> {
-            //asd
-        });
-    }
-
     public void showActionRotate() {
         JFrame frame = new JFrame();
         frame.setSize(300, 300);
@@ -58,14 +19,14 @@ public class ActionRta {
         JLabel title = new JLabel("Rotate");
         JLabel lDegree = new JLabel("Degree = ");
         JTextField tfDegree = new JTextField("0");
-        JButton bCancel = new JButton("cancel");
+        JButton bCancel = new JButton("close");
         JButton bSet = new JButton("set");
 
         title.setBounds(100, 20, 100, 20);
         lDegree.setBounds(20, 80, 90, 20);
         tfDegree.setBounds(120, 80, 80, 20);
-        bCancel.setBounds(80, 180, 80, 20);
-        bSet.setBounds(180, 180, 80, 20);
+        bSet.setBounds(80, 150, 80, 20);
+        bCancel.setBounds(180, 180, 80, 20);
 
         frame.add(title);
         frame.add(lDegree);
@@ -89,7 +50,6 @@ public class ActionRta {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            frame.dispose();
         });
     }
 
@@ -104,7 +64,7 @@ public class ActionRta {
         JLabel lY = new JLabel("Y = ");
         JTextField tfX = new JTextField("0");
         JTextField tfY = new JTextField("0");
-        JButton bCancel = new JButton("cancel");
+        JButton bCancel = new JButton("close");
         JButton bSet = new JButton("set");
 
         title.setBounds(100, 20, 100, 20);
@@ -112,8 +72,8 @@ public class ActionRta {
         lY.setBounds(20, 120, 50, 20);
         tfX.setBounds(80, 80, 80, 20);
         tfY.setBounds(80, 120, 80, 20);
-        bCancel.setBounds(80, 180, 80, 20);
-        bSet.setBounds(180, 180, 80, 20);
+        bSet.setBounds(80, 150, 80, 20);
+        bCancel.setBounds(180, 180, 80, 20);
 
         frame.add(title);
         frame.add(lX);
@@ -140,7 +100,6 @@ public class ActionRta {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            frame.dispose();
         });
     }
 
@@ -155,7 +114,7 @@ public class ActionRta {
         JLabel lY = new JLabel("Y (%) = ");
         JTextField tfX = new JTextField("100");
         JTextField tfY = new JTextField("100");
-        JButton bCancel = new JButton("cancel");
+        JButton bCancel = new JButton("close");
         JButton bSet = new JButton("set");
 
         title.setBounds(100, 20, 100, 20);
@@ -163,8 +122,8 @@ public class ActionRta {
         lY.setBounds(20, 120, 50, 20);
         tfX.setBounds(80, 80, 80, 20);
         tfY.setBounds(80, 120, 80, 20);
-        bCancel.setBounds(80, 180, 80, 20);
-        bSet.setBounds(180, 180, 80, 20);
+        bSet.setBounds(80, 150, 80, 20);
+        bCancel.setBounds(180, 180, 80, 20);
 
         frame.add(title);
         frame.add(lX);
@@ -192,7 +151,6 @@ public class ActionRta {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            frame.dispose();
         });
     }
 
@@ -207,7 +165,7 @@ public class ActionRta {
         JLabel lY = new JLabel("Y (*axis) = ");
         JTextField tfX = new JTextField("0");
         JTextField tfY = new JTextField("0");
-        JButton bCancel = new JButton("cancel");
+        JButton bCancel = new JButton("close");
         JButton bSet = new JButton("set");
 
         title.setBounds(100, 20, 100, 20);
@@ -215,8 +173,8 @@ public class ActionRta {
         lY.setBounds(20, 120, 70, 20);
         tfX.setBounds(100, 80, 80, 20);
         tfY.setBounds(100, 120, 80, 20);
-        bCancel.setBounds(80, 180, 80, 20);
-        bSet.setBounds(180, 180, 80, 20);
+        bSet.setBounds(80, 150, 80, 20);
+        bCancel.setBounds(180, 180, 80, 20);
 
         frame.add(title);
         frame.add(lX);
@@ -243,7 +201,6 @@ public class ActionRta {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            frame.dispose();
         });
     }
 }
