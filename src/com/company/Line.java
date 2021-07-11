@@ -1,9 +1,11 @@
 package com.company;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Line {
     private final JPanel panelRoot;
@@ -26,18 +28,25 @@ public class Line {
         boxButton = Box.createVerticalBox();
         panelRoot.add(boxButton);
 
-        makeButton("dashed");
-        makeButton("normal");
-        makeButton("dotted");
+        makeButton("dashed", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\dashline.png");
+        makeButton("normal", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\line.png");
+        makeButton("dotted", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\dotline.png");
         strokeWidth();
 
     }
 
-    public void makeButton(String type) {
-        JButton btn = new JButton(type);
+    public void makeButton(String type, String path) {
+        Image scaled;
+        JButton btn = new JButton();
 //        panelButton.add(btn);
         boxButton.add(btn);
-        btn.setSize(20, 20);
+        btn.setPreferredSize(new Dimension(20,20));
+        try {
+            scaled = ImageIO.read(new File(path)).getScaledInstance(15,15,Image.SCALE_SMOOTH);
+            btn.setIcon(new ImageIcon(scaled));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
