@@ -28,9 +28,11 @@ public class Line {
         boxButton = Box.createVerticalBox();
         panelRoot.add(boxButton);
 
-        makeButton("dashed", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\dashline.png");
-        makeButton("normal", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\line.png");
-        makeButton("dotted", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\dotline.png");
+        String userDirectory = System.getProperty("user.dir");
+
+        makeButton("dashed", userDirectory + "\\src\\com\\company\\icon\\dashline.png");
+        makeButton("normal", userDirectory + "\\src\\com\\company\\icon\\line.png");
+        makeButton("dotted", userDirectory + "\\src\\com\\company\\icon\\dotline.png");
         strokeWidth();
 
     }

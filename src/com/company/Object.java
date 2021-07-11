@@ -21,13 +21,15 @@ public class Object {
         panelButton = new JPanel();
         panelRoot.add(panelButton);
 
-        makeObjectButton("Drawline", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\pencil.png");
-        makeObjectButton("Rectangle", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\square.png");
-        makeObjectButton("Triangle", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\segitiga.png");
-        makeObjectButton("Diamond", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\diamond.png");
-        makeObjectButton("Circle", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\circle.png");
-        makeObjectButton("Hexagon", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\hexagon.png");
-        makeObjectButton("Line", "E:\\tugas\\#UPNVY\\#Semester 6\\Grafika Komputer dan Multimedia (C)\\Projek\\icon\\line.png");
+        String userDirectory = System.getProperty("user.dir");
+
+        makeObjectButton("Drawline", userDirectory + "\\src\\com\\company\\icon\\pencil.png");
+        makeObjectButton("Rectangle", userDirectory + "\\src\\com\\company\\icon\\square.png");
+        makeObjectButton("Triangle", userDirectory + "\\src\\com\\company\\icon\\segitiga.png");
+        makeObjectButton("Diamond", userDirectory + "\\src\\com\\company\\icon\\diamond.png");
+        makeObjectButton("Circle", userDirectory + "\\src\\com\\company\\icon\\circle.png");
+        makeObjectButton("Hexagon", userDirectory + "\\src\\com\\company\\icon\\hexagon.png");
+        makeObjectButton("Line", userDirectory + "\\src\\com\\company\\icon\\line.png");
     }
 
     public void makeObjectButton(String object, String path) {
